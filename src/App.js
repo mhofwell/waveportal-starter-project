@@ -80,6 +80,7 @@ const wave = async () => {
 
      count = await wavePortalContract.getTotalWaves(); 
      totalWaves = count; 
+     console.log(totalWaves);
      console.log("Retrieved total wave count...", count.toNumber());
 
     } else {
