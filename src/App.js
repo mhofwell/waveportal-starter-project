@@ -1,8 +1,14 @@
+import { ethers } from "ethers";
+import { getContractAddress } from "ethers/lib/utils";
 import React, {useEffect, useState} from "react";
 import "./App.css";
+import abi from "./utils/WavePortal.json";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
+
+  const contractAddress = '0x3b2C6C417651E48cdB66F8520278C2B2569d56b7';
+  const contractABI = abi.abi;
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -49,9 +55,42 @@ const connectWallet = async () => {
   }
 }
 
+const wave = async () => {
+  try {
+    const {ethereum} = window; 
+
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum); 
+      const signer = provider.getSigner(); 
+      const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+      let count = await wavePortalContract.getTotalWaves(); 
+      console.log("Retrieved total wave count...", count.toNumber());
+
+      /*
+      * Execute the actual wave from your smart contract 
+      */
+     const waveTxn = await wavePortalContract.wave(); 
+     console.log("Mining...", waveTxn.hash);
+
+     await waveTxn.wait(); 
+     console.log("Mined ---", waveTxn.hash);
+
+     count = await wavePortalContract.getTotalWaves(); 
+     console.log("Retrieved total wave count...", count.toNumber());
+
+    } else {
+      console.log("Ethereum object does not exist!");
+    }
+  } catch (error){
+    console.log(error);
+  }
+}
+
 useEffect(() => {
   checkIfWalletIsConnected();
 }, [])
+
 return (
   <div className="mainContainer">
     <div className="dataContainer">
@@ -63,7 +102,7 @@ return (
         I am farza and I worked on self-driving cars so that's pretty cool right? Connect your Ethereum wallet and wave at me!
       </div>
 
-      <button className="waveButton" onClick={null}>
+      <button className="waveButton" onClick={wave}>
         Wave at Me
       </button>
 
