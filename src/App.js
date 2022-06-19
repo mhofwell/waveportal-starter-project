@@ -9,7 +9,8 @@ const App = () => {
 
   const contractAddress = '0x3b2C6C417651E48cdB66F8520278C2B2569d56b7';
   const contractABI = abi.abi;
-  let totalWaves; 
+  let totalWaves = 1; 
+  console.log({totalWaves});
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -104,7 +105,7 @@ return (
         I am Michael and I worked at Microsoft so that's pretty cool right? Connect your Ethereum wallet and wave at me!
       </div>
       <div className="bio">
-        This is how many people waved at me! {totalWaves}
+        "This is how many people waved at me! ${totalWaves}"
       </div>
 
       <button className="waveButton" onClick={wave}>
