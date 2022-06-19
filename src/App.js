@@ -10,7 +10,7 @@ const App = () => {
   const contractAddress = '0x3b2C6C417651E48cdB66F8520278C2B2569d56b7';
   const contractABI = abi.abi;
   let totalWaves = 1; 
-  console.log({totalWaves});
+  console.log("I am michael");
 
   const checkIfWalletIsConnected = async () => {
     try {
