@@ -20,6 +20,7 @@ const App = () => {
         return; 
       } else {
         console.log("We have the ethereum object", ethereum);
+        console.log("I am michael");
       }
 
       const accounts = await ethereum.request({method: "eth_accounts"});
