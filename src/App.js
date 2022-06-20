@@ -9,7 +9,6 @@ const App = () => {
 
   const contractAddress = '0x3b2C6C417651E48cdB66F8520278C2B2569d56b7';
   const contractABI = abi.abi;
-  let haveWallet;
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -18,8 +17,7 @@ const App = () => {
         console.log("Make sure you have metamask!");
         return; 
       } else {
-        console.log("We have the ethereum object", ethereum);
-        haveWallet = true; 
+        console.log("We have the ethereum object", ethereum);∂
       }
 
       const accounts = await ethereum.request({method: "eth_accounts"});
@@ -89,18 +87,9 @@ const wave = async () => {
   }
 }
 
-const getTotalWaves = async () => {
-
-
-
-
-}
-
-
 
 useEffect(() => {
   checkIfWalletIsConnected();
-  getTotalWaves(); 
 }, [checkIfWalletIsConnected])
 
 return (
