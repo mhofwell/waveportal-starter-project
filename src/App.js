@@ -1,16 +1,15 @@
 import { ethers } from "ethers";
-import { getContractAddress } from "ethers/lib/utils";
 import React, {useEffect, useState} from "react";
 import "./App.css";
 import abi from "./utils/WavePortal.json";
 
-let totalWaves;
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
 
   const contractAddress = '0x3b2C6C417651E48cdB66F8520278C2B2569d56b7';
   const contractABI = abi.abi;
+  let haveWallet;
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -20,6 +19,7 @@ const App = () => {
         return; 
       } else {
         console.log("We have the ethereum object", ethereum);
+        haveWallet = true; 
       }
 
       const accounts = await ethereum.request({method: "eth_accounts"});
@@ -52,6 +52,7 @@ const connectWallet = async () => {
     const accounts = await ethereum.request({method: "eth_requestAccounts"});
     console.log("Connected", accounts[0]); 
     setCurrentAccount(accounts[0])
+
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +69,6 @@ const wave = async () => {
 
       let count = await wavePortalContract.getTotalWaves(); 
       console.log("Retrieved total wave count...", count.toNumber());
-
       /*
       * Execute the actual wave from your smart contract 
       */
@@ -79,8 +79,6 @@ const wave = async () => {
      console.log("Mined ---", waveTxn.hash);
 
      count = await wavePortalContract.getTotalWaves(); 
-     totalWaves = count; 
-     console.log(totalWaves);
      console.log("Retrieved total wave count...", count.toNumber());
 
     } else {
@@ -91,9 +89,19 @@ const wave = async () => {
   }
 }
 
+const getTotalWaves = async () => {
+
+
+
+
+}
+
+
+
 useEffect(() => {
   checkIfWalletIsConnected();
-}, [])
+  getTotalWaves(); 
+}, [checkIfWalletIsConnected])
 
 return (
   <div className="mainContainer">
@@ -105,7 +113,6 @@ return (
       <div className="bio">
         I am Michael and I worked at Microsoft so that's pretty cool right? Connect your Ethereum wallet and wave at me!
       </div>
-      <div className="bio">{totalWaves}</div>
 
       <button className="waveButton" onClick={wave}>
         Wave at Me
