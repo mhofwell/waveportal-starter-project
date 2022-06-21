@@ -17,7 +17,7 @@ const App = () => {
         console.log("Make sure you have metamask!");
         return; 
       } else {
-        console.log("We have the ethereum object", ethereum);∂
+        console.log("We have the ethereum object", ethereum);
       }
 
       const accounts = await ethereum.request({method: "eth_accounts"});
@@ -90,7 +90,7 @@ const wave = async () => {
 
 useEffect(() => {
   checkIfWalletIsConnected();
-}, [checkIfWalletIsConnected])
+}, [])
 
 return (
   <div className="mainContainer">
