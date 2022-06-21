@@ -67,6 +67,7 @@ const App = () => {
         const account = accounts[0]; 
         console.log("Found an authorized account:", account); 
         setCurrentAccount(account);
+        getAllWaves();
 
       } else {
         console.log("no authorized account found")
@@ -131,7 +132,7 @@ const wave = async () => {
 
 useEffect(() => {
   checkIfWalletIsConnected();
-}, [])
+}, [checkIfWalletIsConnected])
 
 return (
   <div className="mainContainer">
