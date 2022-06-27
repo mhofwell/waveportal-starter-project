@@ -1,3 +1,7 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 .mainContainer {
   display: flex;
   justify-content: center;
@@ -24,11 +28,28 @@
   margin-top: 16px;
 }
 
-.waveButton {
+.connectButton {
   cursor: pointer;
   margin-top: 16px;
   padding: 8px;
   border: 0;
   border-radius: 5px;
   
+}
+
+
+.waveButton {
+  cursor: pointer;
+  width: 200px;
+  height: 40px; 
+  border: 0;
+  border-radius: 5px;
+  background-color: bisque;
+  
+}
+
+.inputField{
+  font-size: 14px;
+  position: relative;
+  --field-padding: 12px;
 }

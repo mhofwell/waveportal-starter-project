@@ -155,12 +155,14 @@ return (
       </div>
 
       {!currentAccount && (
-        <button className="waveButton" onClick={connectWallet}>
+        <button className="connectButton" onClick={connectWallet}>
           Connect Wallet
         </button>
       )}
 
-      <Form handleSubmit={handleSubmit} />
+      {currentAccount && (
+          <Form handleSubmit={handleSubmit} /> 
+      )}
 
       {allWaves.map((wave, index) => {
         return (

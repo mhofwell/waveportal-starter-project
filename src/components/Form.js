@@ -12,17 +12,16 @@ const Form = ({ handleSubmit }) => {
   };
 
   return (
-    <form className={"bio"} onSubmit={onSubmitHandler}>
-      <div>Type your message below!</div>
-      <div style={{padding: 20}}>
-        <input id="msg" type="text" ref={msgInputRef} />
+    <form className="bio" onSubmit={onSubmitHandler}>
+      <div className="inputField">
+          <label htmlFor="msg" className="placeholder"> Type your message here!</label>
+          <input className="input" id="msg" type="text" ref={msgInputRef} placeholder="&nbsp;" />
       </div>
       <div>
-        <button type="submit">
+        <button className="waveButton" type="submit">
           <span role="img" aria-label="wave">
-            👋
-          </span>
-          at Me
+            👋 
+          </span> at Me
         </button>
       </div>
     </form>
