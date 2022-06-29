@@ -53,3 +53,39 @@
   position: relative;
   --field-padding: 12px;
 }
+
+.inputField input:focus + .placeholder {
+  top: -10px;
+  font-size: 10px;
+  color: #222;
+}
+
+.inputField input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #f2f2f2;
+  padding: 12px;
+  border-radius: 3px;
+  width: 250px;
+  font-size: 14px;
+  padding: var(--field-padding);
+}
+
+.inputField .placeholder {
+  position: absolute;
+  left: 12px;
+  bottom: 50%;
+  top: 22px;  
+  transform: translateY(-50%);
+  width: calc(100% - 24px);  
+  color: rgb(137, 134, 134);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  left: var(--field-padding);
+  width: calc(100% - (var(--field-padding) * 2));
+}
+
